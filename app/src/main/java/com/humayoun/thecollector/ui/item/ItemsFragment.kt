@@ -17,6 +17,7 @@ import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.CollectorDatabase
 import com.humayoun.thecollector.data.item.Item
+import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_items.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,19 +59,27 @@ class ItemsFragment : Fragment(), ItemAdpater.ItemClickListner {
             val bundle = bundleOf(Constants.CATEGORY_NAME to categoryName)
             navController.navigate(R.id.action_ItemsFragment_to_addItemFragment, bundle)
         }
-
-        val itemDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).ItemDao()
-        CoroutineScope(Dispatchers.IO).launch {
-            categoryName?.let {
-                val list = itemDao.getItemsForCategory(it)
-                withContext(Dispatchers.Main) {
-                    val itemsAdapter = ItemAdpater( requireContext(), list, this@ItemsFragment)
-                    val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                    rv_items.layoutManager = layoutManager
-                    rv_items.adapter = itemsAdapter
-                }
-            }
+        
+        categoryName?.let {
+            val list = SharedRepository.getInstance(requireContext()).getAllItemsForCategory(it)
+            val itemsAdapter = ItemAdpater( requireContext(), list, this)
+            val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            rv_items.layoutManager = layoutManager
+            rv_items.adapter = itemsAdapter
         }
+
+//        val itemDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).ItemDao()
+//        CoroutineScope(Dispatchers.IO).launch {
+//            categoryName?.let {
+//                val list = itemDao.getItemsForCategory(it)
+//                withContext(Dispatchers.Main) {
+//                    val itemsAdapter = ItemAdpater( requireContext(), list, this@ItemsFragment)
+//                    val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+//                    rv_items.layoutManager = layoutManager
+//                    rv_items.adapter = itemsAdapter
+//                }
+//            }
+//        }
     }
 
     fun setReceivingArguments() {

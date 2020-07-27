@@ -17,6 +17,7 @@ import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.CollectorDatabase
 import com.humayoun.thecollector.data.item.Item
+import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,24 +56,29 @@ class AddItemFragment : Fragment() {
         }
 
         button_add_item.setOnClickListener{
+            if(!isValidInput()) {
+                return@setOnClickListener
+            }
+
             val title = et_title.text.toString()
             val desc = et_description.text.toString()
             val rating = ratingBar.rating
             var imageUriStr = imageURI.toString()
-            CoroutineScope(Dispatchers.IO).launch {
-                val itemDao = CollectorDatabase.getCollectorDatabase(requireActivity().applicationContext).ItemDao()
-                itemDao.insertItem(
-                    Item(
-                        title,
-                        desc,
-                        rating,
-                        imageUriStr,
-                        categoryName ?: ""
-                    )
-                )
-            }
+
+            val newItem =   Item(title, desc, rating, imageUriStr, categoryName ?: "")
+            SharedRepository.getInstance(requireContext()).insertItem(newItem)
+
             navController.navigateUp()
         }
+    }
+
+    fun isValidInput(): Boolean {
+        val title = et_title.text.toString()
+        if(!Utils.isValidInput(title)) {
+            Utils.showError(requireContext(), getString(R.string.empty_title_error))
+            return false
+        }
+        return true
     }
 
     fun setReceivingArguments() {

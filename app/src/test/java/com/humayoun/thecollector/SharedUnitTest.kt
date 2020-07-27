@@ -8,7 +8,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class UtilUnitTest {
+class SharedUnitTest {
 
     @Test
     fun isValidInputTest() {

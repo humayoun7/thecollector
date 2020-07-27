@@ -13,6 +13,8 @@ import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.data.CollectorDatabase
+import com.humayoun.thecollector.data.category.existsIn
+import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_add_category_dialog.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,17 +42,35 @@ class AddCategoryFragment : DialogFragment() {
         setNavBar()
 
         button_add_category.setOnClickListener{
-            val cName = et_category.text.toString()
-
-            if(!cName.isEmpty()) {
-                val categoryDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).categoryDao()
-                CoroutineScope(Dispatchers.IO).launch {
-                    categoryDao.insertCategory(Category(cName))
-                }
+            if(!isValidInput()) {
+                return@setOnClickListener
             }
+
+            val cName = et_category.text.toString()
+            et_category.clearFocus()
+
+            val newCategory = Category(cName)
+            SharedRepository.getInstance(requireContext()).insertCategory(newCategory)
 
             navController.navigateUp()
         }
+    }
+
+
+    fun isValidInput(): Boolean {
+        val cName = et_category.text.toString()
+        if (!Utils.isValidInput(cName)) {
+            Utils.showError(requireContext(), getString(R.string.error_category_name))
+            return false
+        }
+
+        val categories = SharedRepository.getInstance(requireContext()).getAllCategories()
+        if (Category(cName).existsIn(categories)) {
+            Utils.showError(requireContext(), getString(R.string.error_category_exists))
+            return false
+        }
+
+        return true
     }
 
     fun setNavBar() {

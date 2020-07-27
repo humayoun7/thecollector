@@ -15,6 +15,7 @@ import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.data.CollectorDatabase
+import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.coroutines.*
 
@@ -44,16 +45,23 @@ class CategoryFragment : Fragment(), CategoryAdapter.CategoryClickListner {
             navController.navigate(R.id.action_CategoryFragment_to_addCategoryDialogFragment)
         }
 
-        val categoryDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).categoryDao()
-        CoroutineScope(Dispatchers.IO).launch {
-            val list = categoryDao.getAll()
-            withContext(Dispatchers.Main) {
-                val categoryAdapter = CategoryAdapter(list, this@CategoryFragment)
-                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-                rv_categories.layoutManager = layoutManager
-                rv_categories.adapter = categoryAdapter
-            }
-        }
+        val list = SharedRepository.getInstance(requireContext()).getAllCategories()
+        val categoryAdapter = CategoryAdapter(list, this)
+        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+
+        rv_categories.layoutManager = layoutManager
+        rv_categories.adapter = categoryAdapter
+
+//        val categoryDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).categoryDao()
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val list = categoryDao.getAll()
+//            withContext(Dispatchers.Main) {
+//                val categoryAdapter = CategoryAdapter(list, this@CategoryFragment)
+//                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
+//                rv_categories.layoutManager = layoutManager
+//                rv_categories.adapter = categoryAdapter
+//            }
+//        }
     }
 
     fun setNavBar() {

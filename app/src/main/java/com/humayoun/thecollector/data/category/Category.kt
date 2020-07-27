@@ -8,3 +8,13 @@ data class Category (
         @PrimaryKey
         val name: String
 )
+
+fun Category.existsIn(categories: List<Category>): Boolean {
+       for (category in categories) {
+               if(this.name.toLowerCase() == category.name.toLowerCase()) {
+                       return true
+               }
+       }
+
+        return false
+}
