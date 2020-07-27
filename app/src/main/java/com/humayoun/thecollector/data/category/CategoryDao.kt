@@ -1,6 +1,7 @@
-package com.humayoun.thecollector.data
+package com.humayoun.thecollector.data.category
 
 import androidx.room.*
+import com.humayoun.thecollector.data.category.Category
 
 @Dao
 interface CategoryDao {

@@ -1,9 +1,10 @@
-package com.humayoun.thecollector.data
+package com.humayoun.thecollector.data.item
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
+import com.humayoun.thecollector.data.category.Category
 
 @Entity (tableName = "items")
 @ForeignKey(entity = Category::class, parentColumns = ["name"], childColumns = ["categoryName"], onDelete = CASCADE)

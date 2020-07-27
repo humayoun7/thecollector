@@ -5,4 +5,5 @@
     <dimen name="sameSectionTopMargin">8dp</dimen>
     <dimen name="btn_height">60dp</dimen>
     <dimen name="btn_width">250dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddItemFragment">
+    tools:context=".ui.item.AddItemFragment">
 
     <ScrollView
         android:layout_width="0dp"
@@ -19,7 +19,7 @@
             android:id="@+id/constraint_layout_in_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".AddItemFragment"
+            tools:context=".ui.item.AddItemFragment"
             android:padding="@dimen/standard_padding">
 
             <androidx.constraintlayout.widget.Guideline
@@ -98,6 +98,16 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
+            <Button
+                android:id="@+id/button_select_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/tv_image"
+                android:layout_marginTop="@dimen/sameSectionTopMargin"
+                android:text="Select Image From Library"
+                />
+
             <ImageView
                 android:id="@+id/iv_item"
                 android:layout_width="320dp"
@@ -106,7 +116,7 @@
                 android:src="@android:drawable/dialog_frame"
                 android:layout_marginTop="@dimen/sameSectionTopMargin"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_image" />
+                app:layout_constraintTop_toBottomOf="@+id/button_select_image" />
 
             <Button
                 android:id="@+id/button_add_item"

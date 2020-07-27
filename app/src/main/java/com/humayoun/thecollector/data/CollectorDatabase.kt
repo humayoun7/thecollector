@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.humayoun.thecollector.data.category.Category
+import com.humayoun.thecollector.data.category.CategoryDao
+import com.humayoun.thecollector.data.item.Item
+import com.humayoun.thecollector.data.item.ItemDao
 
 @Database(entities = [Category::class, Item::class], version = 1, exportSchema = false)
 abstract class CollectorDatabase: RoomDatabase() {

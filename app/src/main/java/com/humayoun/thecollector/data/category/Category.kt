@@ -1,4 +1,4 @@
-package com.humayoun.thecollector.data
+package com.humayoun.thecollector.data.category
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,6 +7,4 @@ import androidx.room.PrimaryKey
 data class Category (
         @PrimaryKey
         val name: String
-//        @PrimaryKey(autoGenerate = true)
-//        val categoryId: Int = 0
 )

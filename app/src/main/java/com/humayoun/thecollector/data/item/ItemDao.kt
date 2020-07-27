@@ -1,9 +1,10 @@
-package com.humayoun.thecollector.data
+package com.humayoun.thecollector.data.item
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.humayoun.thecollector.data.item.Item
 
 @Dao
 interface ItemDao {

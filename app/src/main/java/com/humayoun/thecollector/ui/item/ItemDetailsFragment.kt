@@ -1,4 +1,4 @@
-package com.humayoun.thecollector
+package com.humayoun.thecollector.ui.item
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 
-/**
- * A simple [Fragment] subclass.
- */
-class itemDetailsFragment : Fragment() {
+
+class ItemDetailsFragment : Fragment() {
 
     private lateinit var navController: NavController
 
@@ -22,11 +21,7 @@ class itemDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        val view =  inflater.inflate(R.layout.fragment_item_details, container, false)
-
-
-        return view
+        return inflater.inflate(R.layout.fragment_item_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

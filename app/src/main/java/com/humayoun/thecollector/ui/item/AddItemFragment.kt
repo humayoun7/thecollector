@@ -1,8 +1,7 @@
-package com.humayoun.thecollector
+package com.humayoun.thecollector.ui.item
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,17 +12,17 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.humayoun.thecollector.Constants
+import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.CollectorDatabase
-import com.humayoun.thecollector.data.Item
+import com.humayoun.thecollector.data.item.Item
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class AddItemFragment : Fragment() {
 
     private lateinit var navController: NavController
@@ -35,22 +34,20 @@ class AddItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_add_item, container, false)
-
-
-        return view
+        return inflater.inflate(R.layout.fragment_add_item, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        categoryName = arguments?.get(Constants.CATEGORY_NAME).toString()
+        setReceivingArguments()
         setupUI()
     }
 
     fun setupUI() {
         setNavBar()
-        iv_item.setOnClickListener{
+
+        button_select_image.setOnClickListener{
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
@@ -62,18 +59,30 @@ class AddItemFragment : Fragment() {
             val desc = et_description.text.toString()
             val rating = ratingBar.rating
             var imageUriStr = imageURI.toString()
-
             CoroutineScope(Dispatchers.IO).launch {
                 val itemDao = CollectorDatabase.getCollectorDatabase(requireActivity().applicationContext).ItemDao()
-                itemDao.insertItem(Item(title,desc,rating,imageUriStr, categoryName?: ""))
+                itemDao.insertItem(
+                    Item(
+                        title,
+                        desc,
+                        rating,
+                        imageUriStr,
+                        categoryName ?: ""
+                    )
+                )
             }
-
             navController.navigateUp()
         }
     }
 
+    fun setReceivingArguments() {
+        categoryName = arguments?.get(Constants.CATEGORY_NAME).toString()
+    }
+
     fun setNavBar() {
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+        navController = Navigation.findNavController(requireActivity(),
+            R.id.nav_host_fragment
+        )
         setHasOptionsMenu(true)
         Utils.setActionBar(requireActivity(), getString(R.string.add_new_item), true)
     }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/CategoryFragment"
-        android:name="com.humayoun.thecollector.CategoryFragment"
+        android:name="com.humayoun.thecollector.ui.category.CategoryFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_category">
 
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/ItemsFragment"
-        android:name="com.humayoun.thecollector.ItemsFragment"
+        android:name="com.humayoun.thecollector.ui.item.ItemsFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_items">
         <action
@@ -35,17 +35,17 @@
 
     <fragment
         android:id="@+id/itemDetailsFragment"
-        android:name="com.humayoun.thecollector.itemDetailsFragment"
+        android:name="com.humayoun.thecollector.ui.item.ItemDetailsFragment"
         android:label="fragment_item_details"
         tools:layout="@layout/fragment_item_details" />
     <fragment
         android:id="@+id/addCategoryDialogFragment"
-        android:name="com.humayoun.thecollector.AddCategoryFragment"
+        android:name="com.humayoun.thecollector.ui.category.AddCategoryFragment"
         android:label="fragment_add_category_dialog"
         tools:layout="@layout/fragment_add_category_dialog" />
     <fragment
         android:id="@+id/addItemFragment"
-        android:name="com.humayoun.thecollector.AddItemFragment"
+        android:name="com.humayoun.thecollector.ui.item.AddItemFragment"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" />
 </navigation>

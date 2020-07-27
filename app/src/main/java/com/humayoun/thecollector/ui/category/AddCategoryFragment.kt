@@ -1,4 +1,4 @@
-package com.humayoun.thecollector
+package com.humayoun.thecollector.ui.category
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,22 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
-import com.humayoun.thecollector.data.Category
+import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.data.CollectorDatabase
-import com.humayoun.thecollector.ui.CategoryAdapter
 import kotlinx.android.synthetic.main.fragment_add_category_dialog.*
-import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class AddCategoryFragment : DialogFragment() {
 
     private lateinit var navController: NavController
@@ -44,6 +38,7 @@ class AddCategoryFragment : DialogFragment() {
 
     fun setupUI() {
         setNavBar()
+
         button_add_category.setOnClickListener{
             val cName = et_category.text.toString()
 
@@ -59,7 +54,9 @@ class AddCategoryFragment : DialogFragment() {
     }
 
     fun setNavBar() {
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+        navController = Navigation.findNavController(requireActivity(),
+            R.id.nav_host_fragment
+        )
         setHasOptionsMenu(true)
         Utils.setActionBar(requireActivity(), getString(R.string.add_new_category),true)
     }
@@ -68,6 +65,7 @@ class AddCategoryFragment : DialogFragment() {
         if(item.itemId == android.R.id.home) {
             navController.navigateUp()
         }
+
         return super.onOptionsItemSelected(item)
     }
 
