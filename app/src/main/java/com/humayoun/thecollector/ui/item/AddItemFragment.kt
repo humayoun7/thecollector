@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.humayoun.thecollector.Constants
 import com.humayoun.thecollector.R
-import com.humayoun.thecollector.Utils.Utils
+import com.humayoun.thecollector.utils.Utils
 import com.humayoun.thecollector.data.item.Item
 import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_add_item.*

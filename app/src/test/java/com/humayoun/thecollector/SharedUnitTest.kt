@@ -1,6 +1,6 @@
 package com.humayoun.thecollector
 
-import com.humayoun.thecollector.Utils.Utils
+import com.humayoun.thecollector.utils.Utils
 import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.data.category.existsIn
 import org.junit.Assert.assertEquals

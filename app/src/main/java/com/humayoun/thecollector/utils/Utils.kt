@@ -1,14 +1,9 @@
-package com.humayoun.thecollector.Utils
+package com.humayoun.thecollector.utils
 
 import android.app.Activity
 import android.content.Context
-import android.database.Cursor
-import android.net.Uri
-import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.humayoun.thecollector.data.category.Category
-import java.util.*
 
 
 object Utils {

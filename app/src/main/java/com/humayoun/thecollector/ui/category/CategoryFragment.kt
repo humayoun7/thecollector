@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.humayoun.thecollector.Constants
 import com.humayoun.thecollector.R
-import com.humayoun.thecollector.Utils.Utils
+import com.humayoun.thecollector.utils.Utils
 import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_category.*
