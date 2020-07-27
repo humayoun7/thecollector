@@ -12,7 +12,7 @@
         android:id="@+id/tv_category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category Name"
+        android:text="@string/category_name"
         android:textFontWeight="10"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
