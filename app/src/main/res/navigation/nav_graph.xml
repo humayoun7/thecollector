@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CategoryFragment">
+
+    <fragment
+        android:id="@+id/CategoryFragment"
+        android:name="com.humayoun.thecollector.CategoryFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_category">
+
+        <action
+            android:id="@+id/action_nav_to_items"
+            app:destination="@id/ItemsFragment" />
+        <action
+            android:id="@+id/action_CategoryFragment_to_addCategoryDialogFragment"
+            app:destination="@id/addCategoryDialogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ItemsFragment"
+        android:name="com.humayoun.thecollector.ItemsFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_items">
+        <action
+            android:id="@+id/action_ItemsFragment_to_itemDetailsFragment"
+            app:destination="@id/itemDetailsFragment" />
+        <action
+            android:id="@+id/action_ItemsFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.humayoun.thecollector.itemDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" />
+    <fragment
+        android:id="@+id/addCategoryDialogFragment"
+        android:name="com.humayoun.thecollector.AddCategoryFragment"
+        android:label="fragment_add_category_dialog"
+        tools:layout="@layout/fragment_add_category_dialog" />
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.humayoun.thecollector.AddItemFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" />
+</navigation>
