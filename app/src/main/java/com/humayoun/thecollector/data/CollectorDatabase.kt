@@ -20,7 +20,7 @@ abstract class CollectorDatabase: RoomDatabase() {
         private var INSTANCE: CollectorDatabase? = null
         private var databaseName = "collector.db"
 
-        fun getCollectorDatabase(context: Context): CollectorDatabase {
+        fun getCollectorDatabase(context: Context): CollectorDatabase? {
             if (INSTANCE == null) {
                 synchronized(this) {
                     INSTANCE = Room.databaseBuilder(
@@ -30,8 +30,8 @@ abstract class CollectorDatabase: RoomDatabase() {
                     ).build()
                 }
             }
-            // todo change this to elvis operator
-            return INSTANCE!!
+
+            return INSTANCE
         }
     }
 }

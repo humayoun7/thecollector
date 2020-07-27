@@ -4,24 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.humayoun.thecollector.Constants
 import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
-import com.humayoun.thecollector.data.CollectorDatabase
 import com.humayoun.thecollector.data.item.Item
 import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_add_item.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class AddItemFragment : Fragment() {
@@ -50,9 +46,9 @@ class AddItemFragment : Fragment() {
 
         button_select_image.setOnClickListener{
             val intent = Intent()
-            intent.type = "image/*"
+            intent.type = Constants.EXTERNAL_CONTENT_TYPE
             intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 0);
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), Constants.EXTERNAL_CONTENT_REQUEST_CODE);
         }
 
         button_add_item.setOnClickListener{
@@ -95,7 +91,7 @@ class AddItemFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if ( resultCode == Activity.RESULT_OK && requestCode == 0) {
+        if ( resultCode == Activity.RESULT_OK && requestCode == Constants.EXTERNAL_CONTENT_REQUEST_CODE) {
             imageURI = data?.getData()
             imageURI?.let {
                 Glide.with(requireActivity())
@@ -103,7 +99,6 @@ class AddItemFragment : Fragment() {
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(iv_item)
             }
-
         }
     }
 

@@ -1,11 +1,11 @@
 package com.humayoun.thecollector.ui.category
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,10 +14,8 @@ import com.humayoun.thecollector.Constants
 import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.category.Category
-import com.humayoun.thecollector.data.CollectorDatabase
 import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_category.*
-import kotlinx.coroutines.*
 
 
 class CategoryFragment : Fragment(), CategoryAdapter.CategoryClickListner {
@@ -51,17 +49,6 @@ class CategoryFragment : Fragment(), CategoryAdapter.CategoryClickListner {
 
         rv_categories.layoutManager = layoutManager
         rv_categories.adapter = categoryAdapter
-
-//        val categoryDao = CollectorDatabase.getCollectorDatabase(activity?.applicationContext!!).categoryDao()
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val list = categoryDao.getAll()
-//            withContext(Dispatchers.Main) {
-//                val categoryAdapter = CategoryAdapter(list, this@CategoryFragment)
-//                val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL,false)
-//                rv_categories.layoutManager = layoutManager
-//                rv_categories.adapter = categoryAdapter
-//            }
-//        }
     }
 
     fun setNavBar() {

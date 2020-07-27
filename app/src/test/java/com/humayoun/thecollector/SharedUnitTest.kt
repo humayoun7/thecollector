@@ -1,12 +1,10 @@
 package com.humayoun.thecollector
 
-import com.bumptech.glide.util.Util
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.category.Category
 import com.humayoun.thecollector.data.category.existsIn
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class SharedUnitTest {
 

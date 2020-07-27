@@ -1,7 +1,6 @@
 package com.humayoun.thecollector.ui.category
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -12,13 +11,9 @@ import androidx.navigation.Navigation
 import com.humayoun.thecollector.R
 import com.humayoun.thecollector.Utils.Utils
 import com.humayoun.thecollector.data.category.Category
-import com.humayoun.thecollector.data.CollectorDatabase
 import com.humayoun.thecollector.data.category.existsIn
 import com.humayoun.thecollector.shared.SharedRepository
 import kotlinx.android.synthetic.main.fragment_add_category_dialog.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class AddCategoryFragment : DialogFragment() {

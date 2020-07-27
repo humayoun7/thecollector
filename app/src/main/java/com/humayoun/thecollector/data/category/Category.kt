@@ -9,12 +9,13 @@ data class Category (
         val name: String
 )
 
+//region extension
 fun Category.existsIn(categories: List<Category>): Boolean {
        for (category in categories) {
                if(this.name.toLowerCase() == category.name.toLowerCase()) {
                        return true
                }
        }
-
         return false
 }
+//endregion

@@ -24,20 +24,13 @@
         android:name="com.humayoun.thecollector.ui.item.ItemsFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_items">
-        <action
-            android:id="@+id/action_ItemsFragment_to_itemDetailsFragment"
-            app:destination="@id/itemDetailsFragment" />
+
         <action
             android:id="@+id/action_ItemsFragment_to_addItemFragment"
             app:destination="@id/addItemFragment" />
 
     </fragment>
 
-    <fragment
-        android:id="@+id/itemDetailsFragment"
-        android:name="com.humayoun.thecollector.ui.item.ItemDetailsFragment"
-        android:label="fragment_item_details"
-        tools:layout="@layout/fragment_item_details" />
     <fragment
         android:id="@+id/addCategoryDialogFragment"
         android:name="com.humayoun.thecollector.ui.category.AddCategoryFragment"
